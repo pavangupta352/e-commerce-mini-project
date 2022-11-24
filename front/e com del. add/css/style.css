@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Thambi+2&family=Raleway&family=Rubik&display=swap");
+
+:root{
+    --first-color:#7300aa;
+    --second-color:#edba60;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family:"Rubik", cursive;
+  }
+*{
+    font-family: "Baloo Thambi 2", cursive;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all .2s cubic-bezier(.37,1.14,.26,1.24);
+}
+
+*::selection{
+    background:var(--second-color);
+    color:#fff;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    background: var(--first-color);
+}
+
+.btn{
+    height: 4rem;
+    width: 14rem;
+    background:var(--first-color);
+    color:#ffff;
+    font-size: 2rem;
+    letter-spacing: .1rem;
+    cursor: pointer;
+    border:none;
+    outline: none;
+    border-radius: 20px;
+    box-shadow: 0 .3rem .5rem rgba(0,0,0,.3);
+}
+
+.btn:hover{
+    letter-spacing: .2rem;
+    opacity: .8;
+    background:var(--second-color);
+}
+.container{
+    position: absolute;
+    background-color: #f4f4f4;
+    height: 55vh;
+    width: 100%;
+    margin: 2.5% 0%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+.icons a{
+    position: relative;
+    font-size: 2rem;
+    color: #ffff;
+    top: -50px;
+    float: right;
+    margin-right: 5%;
+}
+.icons a:hover{
+  color: var(--second-color);
+}
+ h1{
+    font-size: 3rem;
+    color: #ffff;
+    margin: 20px;
+    margin-left: 30px;
+   
+}
+.container .box1{
+    padding: 20px 50px;
+}
+.container .box1 h3{
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #363957;
+    letter-spacing: 0.5px;
+}
+.container .box1 p{
+    font-size: 2rem;
+    color: #363957;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+}
+.container .box1 p span{
+    font-size: 2rem;
+    color: #363957;
+    font-weight: bolder;
+    letter-spacing: 0.5px;
+}
+.container .box1 .btn{
+    margin-top: 30px;
+    cursor: pointer;
+    border:2px solid var(--first-color);
+    background-color: #ffff;
+    color: #363957;
+    outline: none;
+}
+.container .box1 .btn:hover{
+    border:2px solid var(--second-color);
+    background-color: var(--second-color);
+    color: #ffff;
+}
+.container .box2{
+    position: absolute;
+    display: flex;
+    color: #363957;
+    padding: 20px 50px;
+    right: 0;
+}
+
+.add .btn{
+    position: relative;
+    margin-top: 38rem;
+    width: 100%;
+    cursor: pointer;
+    border:2px solid var(--first-color);
+    background-color: #ffff;
+    color: #363957;
+    outline: none;
+}
+.add .btn:hover{
+    border:2px solid var(--second-color);
+    background-color: var(--second-color);
+    color: #ffff;
+}
+
+
+
+

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="loginstyle.css">
+</head>
+
+<body>
+
+
+    <section class="user bcimage">
+        <div class="user_options-container">
+            <div class="user_options-text">
+                <div class="user_options-unregistered">
+                    <h2 class="user_unregistered-title">Don't have an account?</h2>
+                    <p class="user_unregistered-text">Create an account faster to make yourself "Prepration less" to "Prepared"</p>
+                    <button class="user_unregistered-signup" id="signup-button">Sign up</button>
+                </div>
+
+                <div class="user_options-registered">
+                    <h2 class="user_registered-title">Have an account?</h2>
+                    <p class="user_registered-text">Banjo tote bag bicycle rights, High Life sartorial cray craft beer whatever street art fap.</p>
+                    <button class="user_registered-login" id="login-button">Login</button>
+                </div>
+            </div>
+
+            <div class="user_options-forms" id="user_options-forms">
+                <div class="user_forms-login">
+                    <h2 class="forms_title">Login</h2>
+                    <form class="forms_form" id="form_">
+
+                        <div class="forms_field">
+                            <input type="text" name="email" id="email" placeholder="Email   /    Id" class="forms_field-input" required autofocus />
+                        </div>
+                        <div class="forms_field">
+                            <input type="password" id="password" name="password" placeholder="Password" class="forms_field-input" required />
+                        </div>
+
+                        <div class="forms_buttons">
+                            <button type="button" class="forms_buttons-forgot">Forgot password?</button>
+                            <input type="submit" value="Log In" class="forms_buttons-action">
+                        </div>
+                    </form>
+                </div>
+                <div class="user_forms-signup">
+                    <h2 class="forms_title" style="margin-top: -5px;">Sign Up</h2>
+                    <form class="forms_form" id="form_r" style="margin-top: -25px;">
+                        <div class="forms_field">
+                            <input type="text" placeholder="unique id" id="id" class="forms_field-input" required />
+                        </div>
+                        <div class="forms_field">
+                            <input type="text" placeholder="Full Name" id="name" class="forms_field-input" required />
+                        </div>
+                        <div class="forms_field">
+                            <input type="email" placeholder="Email " id="email" class="forms_field-input" required />
+                        </div>
+                        <div class="forms_field">
+                            <input type="password" placeholder="Password" id="pass" class="forms_field-input" required />
+                        </div>
+
+                        <div class="forms_buttons">
+                            <input type="submit" value="Sign up" class="forms_buttons-action">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        window.onload = () => {
+
+            fetch('http://localhost:4000/login/if', {
+                credentials: "include"
+            }).then(s => s.text()).then(
+                res => {
+                    console.log(res)
+                    if (res == "logged") {
+
+                        window.location.replace('http://localhost:4000/main.html')
+                    }
+
+
+                }
+            )
+        }
+
+
+
+
+
+
+
+        document.getElementById("form_").addEventListener('submit', (e) => {
+            e.preventDefault();
+            login()
+        })
+
+        function login() {
+            const formm = document.getElementById("form_")
+
+
+            const data = {
+                id: formm.elements['email'].value,
+                pass: formm.elements['password'].value
+            }
+            console.log(data)
+
+            fetch('http://localhost:4000/login', {
+                "method": "POST",
+                "body": JSON.stringify(data),
+                credentials: "include",
+
+
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(d => d.text()).then(s => {
+                console.log(s)
+                localStorage.setItem('userInfo', {
+                    name: data.name
+                })
+                if (s == "sucess") {
+                    window.location.replace("http://localhost:4000/main.html");
+                }
+            })
+
+
+        }
+
+        document.getElementById("form_r").addEventListener('submit', (e) => {
+            e.preventDefault();
+            register()
+        })
+
+        function register() {
+            const formm = document.getElementById("form_r")
+            const data = {
+                id: formm.elements['id'].value,
+                pass: formm.elements['pass'].value,
+                email: formm.elements['email'].value,
+                name: formm.elements['name'].value
+
+
+            }
+
+
+            console.log(data)
+
+
+            fetch('http://localhost:4000/register', {
+                "method": "POST",
+                "body": JSON.stringify(data),
+                credentials: "include",
+
+
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }).then(d => d.text()).then(s => {
+                alert('sucess now verify mail and login again')
+                localStorage.setItem('userInfo', {
+                    name: data.name,
+                    email: data.email
+                })
+                window.location.reload(false);
+
+
+            })
+        }
+
+
+
+
+
+
+
+        const signupButton = document.getElementById('signup-button'),
+            loginButton = document.getElementById('login-button'),
+            userForms = document.getElementById('user_options-forms')
+
+        signupButton.addEventListener('click', () => {
+            userForms.classList.remove('bounceRight')
+            userForms.classList.add('bounceLeft')
+        }, false)
+
+
+        loginButton.addEventListener('click', () => {
+            userForms.classList.remove('bounceLeft')
+            userForms.classList.add('bounceRight')
+        }, false)
+    </script>
+</body>
+
+</html>
